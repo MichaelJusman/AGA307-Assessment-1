@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Projectile
   - Target
+  - Skeleton
   layers:
   - Default
   - TransparentFX
