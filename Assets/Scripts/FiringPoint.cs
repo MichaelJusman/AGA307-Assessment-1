@@ -2,18 +2,38 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum WeaponType
+{
+    Bullet,
+    Cannon,
+    Laser
+}
 public class FiringPoint : MonoBehaviour
 {
-
+    
+   
+    
+    
     public GameObject projectilePrefab;         //The projectile
     public float projectileSpeed = 1000;        //The speed of projectile
     public Transform firingPoint;               //The point the projectile spawn
     public LineRenderer laser;
     public GameObject hitSparks;
-    public GameObject[] WeaponType;
-
-
+    public WeaponType weaponType;
    
+
+   //void Setup()
+   // {
+   //     switch(weaponType)
+   //     {
+   //         case WeaponType.Cannon:
+   //             if (Input.GetButtonDown("Fire1"))
+   //             {
+   //                 FireCannon();
+
+   //             }
+   //     }
+   // }
 
 
     private void Update()

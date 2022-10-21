@@ -5725,6 +5725,7 @@ Mesh:
     path: 
 --- !u!1001 &523371879
 PrefabInstance:
+  m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
