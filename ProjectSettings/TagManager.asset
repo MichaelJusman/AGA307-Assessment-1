@@ -7,6 +7,10 @@ TagManager:
   - Projectile
   - Target
   - Skeleton
+  - Bullet
+  - Cannon
+  - Pelt
+  - Laser
   layers:
   - Default
   - TransparentFX

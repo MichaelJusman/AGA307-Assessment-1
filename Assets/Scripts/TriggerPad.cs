@@ -22,8 +22,7 @@ public class TriggerPad : MonoBehaviour
             //Increas the spheres scale by 0.01 on all axis
             sphere.transform.localScale += Vector3.one * 0.01f;
 
-            //move the sphere up
-            sphere.transform.position += Vector3.up * 0.01f;
+            
         }
     }
 

@@ -11,7 +11,22 @@ public enum GameState
 }
 
 
-public class GameManager : MonoBehaviour
+public class GameManager : Singleton<GameManager>
 {
     public GameState gameState;
+
+    public int Score;
+
+    Target _TG;
+
+    public void AddScore(int _score)
+    {
+        Score += _score;
+    }
+
+    public void OnEnemyDie()
+    {
+        AddScore(10);
+    }
+
 }

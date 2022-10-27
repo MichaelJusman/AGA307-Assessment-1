@@ -6,55 +6,134 @@ public enum WeaponType
 {
     Bullet,
     Cannon,
+    Pelt,
     Laser
 }
 public class FiringPoint : MonoBehaviour
 {
-    
-   
-    
-    
+
+    public GameObject[] weaponNames;
+
     public GameObject projectilePrefab;         //The projectile
     public float projectileSpeed = 1000;        //The speed of projectile
     public Transform firingPoint;               //The point the projectile spawn
     public LineRenderer laser;
     public GameObject hitSparks;
     public WeaponType weaponType;
-   
 
-   //void Setup()
-   // {
-   //     switch(weaponType)
-   //     {
-   //         case WeaponType.Cannon:
-   //             if (Input.GetButtonDown("Fire1"))
-   //             {
-   //                 FireCannon();
+    [Header("Bullet")]
+    public float bulletDamage = 10;
+    public float bulletSpeed = 10000;
 
-   //             }
-   //     }
-   // }
+    [Header("Cannon")]
+    public float cannonDamage = 100;
+    public float cannonSpeed = 1000;
+
+    [Header("Pelt")]
+    public float peltDamage = 30;
+    public float peltSpeed = 5000;
+
+
+    //void Setup()
+    //{
+    //    switch (weaponType)
+    //    {
+    //        case WeaponType.Bullet:
+    //            if (Input.GetButton("Fire1"))
+    //            {
+    //                FireCannon();
+    //            }
+    //        break;
+            
+    //        case WeaponType.Cannon:
+    //            if (Input.GetButtonDown("Fire1"))
+    //            {
+    //                FireCannon();
+    //            }
+    //        break;
+            
+    //        case WeaponType.Pelt:
+    //            if (Input.GetButtonDown("Fire1"))
+    //            {
+    //                FireCannon();
+    //            }
+    //        break;
+    //    }
+    //}
 
 
     private void Update()
     {
-        if (Input.GetButtonDown("Fire1"))
+        if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            FireCannon();
-
+            Debug.Log(weaponNames[0]);
+            weaponType = WeaponType.Bullet;
+        }
+        
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            Debug.Log(weaponNames[1]);
+            weaponType = WeaponType.Cannon;
+        }
+        
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            Debug.Log(weaponNames[2]);
+            weaponType = WeaponType.Pelt;
         }
 
         if (Input.GetButtonDown("Fire2"))
         {
             FireRaycast();
         }
+        
+        if (Input.GetButtonDown("Fire1"))
+        {
+            switch (weaponType)
+            {
+                case WeaponType.Cannon:
+                    FireCannon();
+                    break;
+                case WeaponType.Pelt:
+                    FirePelt();
+                    break;
+            }
+        }
+        if (Input.GetButton("Fire1"))
+        {
+            switch (weaponType)
+            {
+                case WeaponType.Bullet:
+                    FireBullet();
+                    break;
+            }
+        }
+
+    }
+
+    void FireBullet()
+    {
+        GameObject projectileInstance = Instantiate(weaponNames[0], firingPoint.position, firingPoint.rotation);
+
+        projectileInstance.GetComponent<Rigidbody>().AddForce(firingPoint.forward * bulletSpeed);
+
+        Destroy(projectileInstance, 5);
     }
 
     void FireCannon()
     {
-        GameObject projectileInstance = Instantiate(projectilePrefab, firingPoint.position, firingPoint.rotation);
+        GameObject projectileInstance = Instantiate(weaponNames[1], firingPoint.position, firingPoint.rotation);
 
-        projectileInstance.GetComponent<Rigidbody>().AddForce(firingPoint.forward * projectileSpeed);
+        projectileInstance.GetComponent<Rigidbody>().AddForce(firingPoint.forward * cannonSpeed);
+
+        Destroy(projectileInstance, 5);
+    }
+
+    void FirePelt()
+    {
+        GameObject projectileInstance = Instantiate(weaponNames[2], firingPoint.position, firingPoint.rotation);
+
+        projectileInstance.GetComponent<Rigidbody>().AddForce(firingPoint.forward * peltSpeed);
 
         Destroy(projectileInstance, 5);
     }
@@ -73,4 +152,7 @@ public class FiringPoint : MonoBehaviour
                 Destroy(party, 2);
         }
     }
+
+    
+
 }

@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 8906788866273691784}
   m_Layer: 0
   m_Name: OrbMan
-  m_TagString: Untagged
+  m_TagString: Target
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -110,7 +110,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c328af34544b564d89f2c86956b26d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myType: 0
-  myHealth: 100
-  mySpeed: 2
-  myPatrol: 0
+  mySize: 0
+  myPatrol: 1

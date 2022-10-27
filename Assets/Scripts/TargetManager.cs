@@ -2,12 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum EnemyType
-{
-    OrbMan,
-    CubeMan
-}
-
 public enum PatrolType
 {
     Linear,
@@ -16,7 +10,16 @@ public enum PatrolType
     Chase
 }
 
-public class EnemyManager : MonoBehaviour
+public enum TargetSize
+{
+    Small,
+    Medium,
+    Large
+}
+
+
+
+public class TargetManager : Singleton<TargetManager>
 {
 
     public Transform[] spawnPoints;         //The spawn point for our enemies to spawn at
@@ -35,6 +38,14 @@ public class EnemyManager : MonoBehaviour
     private void Start()
     {
         _GM = FindObjectOfType<GameManager>();
+    }
+
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.I))
+        {
+            SpawnEnemy();
+        }
     }
 
     IEnumerator SpawnDelayed()
@@ -80,4 +91,5 @@ public class EnemyManager : MonoBehaviour
         return spawnPoints[Random.Range(0, spawnPoints.Length)];
     }
 
+    
 }
