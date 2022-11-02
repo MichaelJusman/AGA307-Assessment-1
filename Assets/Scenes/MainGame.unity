@@ -15274,8 +15274,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameState: 1
   difficulty: 0
-  Score: 0
-  maxTIme: 30
+  score: 0
   timer: 30
   timePlus: 5
 --- !u!4 &1225594263
@@ -15308,7 +15307,7 @@ MonoBehaviour:
   scoreText: {fileID: 795299004}
   enemyCountText: {fileID: 107828531}
   difficultyText: {fileID: 677792862}
-  timerText: {fileID: 0}
+  timerText: {fileID: 1894883443}
 --- !u!1 &1229838947
 GameObject:
   m_ObjectHideFlags: 0
@@ -19259,13 +19258,9 @@ MonoBehaviour:
   - {fileID: 3602371237506666027, guid: fece55714a8192d4e950356bbdd2baea, type: 3}
   - {fileID: 8131655466128769650, guid: 795610cfa66ccab43b2f34bcbccb4273, type: 3}
   - {fileID: 8562177150943020502, guid: d8bbc8d7fa73b6f4b82028cf92989aae, type: 3}
-  enemies:
-  - {fileID: 3602371237506666027, guid: fece55714a8192d4e950356bbdd2baea, type: 3}
-  - {fileID: 8131655466128769650, guid: 795610cfa66ccab43b2f34bcbccb4273, type: 3}
-  - {fileID: 8562177150943020502, guid: d8bbc8d7fa73b6f4b82028cf92989aae, type: 3}
+  enemies: []
   enemyNames: []
   spawnCount: 6
-  killCondition: Two
   SpawnDelay: 2
   enemyTrigger: {fileID: 0}
 --- !u!43 &1441757514
