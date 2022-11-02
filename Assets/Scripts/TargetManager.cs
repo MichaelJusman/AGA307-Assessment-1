@@ -28,7 +28,7 @@ public class TargetManager : Singleton<TargetManager>
     public string[] enemyNames;
 
     public int spawnCount = 10;
-    public string killCondition = "Two";
+    //public string killCondition = "Two";
     public float SpawnDelay = 2f;
 
     public GameObject enemyTrigger;
