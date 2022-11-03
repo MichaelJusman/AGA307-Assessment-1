@@ -22,18 +22,18 @@ public enum TargetSize
 public class TargetManager : Singleton<TargetManager>
 {
 
-    public Transform[] spawnPoints;         //The spawn point for our enemies to spawn at
-    public GameObject[] enemyTypes;         //Contains all the different enemy types in our game
-    public List<GameObject> enemies;        //A list containing all the enemies in our scene
-    public string[] enemyNames;
+    public Transform[] spawnPoints;         //The spawn point for our target to spawn at
+    public GameObject[] targetTypes;         //Contains all the different enemy types in our game
+    public List<GameObject> target;        //A list containing all the target in our scene
 
     public int spawnCount = 10;
     public string killCondition = "Two";
     public float SpawnDelay = 2f;
 
-    public GameObject enemyTrigger;
+    public GameObject targetTrigger;
 
     GameManager _GM;
+    UIManager _UI;
 
     private void Start()
     {
@@ -44,20 +44,7 @@ public class TargetManager : Singleton<TargetManager>
     {
         if (Input.GetKeyDown(KeyCode.I))
         {
-            SpawnEnemy();
-        }
-    }
-
-    IEnumerator SpawnDelayed()
-    {
-        yield return new WaitForSeconds(SpawnDelay);
-        if (_GM.gameState == GameState.Playing)
-        {
-            SpawnEnemy();
-        }
-        if (enemies.Count <= spawnCount)
-        {
-            StartCoroutine(SpawnDelayed());
+            SpawnTarget();
         }
     }
 
@@ -65,30 +52,34 @@ public class TargetManager : Singleton<TargetManager>
     {
         if (other.CompareTag("Player"))
         {
-            SpawnEnemy();
+            SpawnTarget();
         }
     }
 
-    void SpawnEnemy()
+    void SpawnTarget()
     {
-        int enemyNumber = Random.Range(0, enemyTypes.Length);
+        int enemyNumber = Random.Range(0, targetTypes.Length);
         int spawnPoint = Random.Range(0, spawnPoints.Length);
-        GameObject enemy = Instantiate(enemyTypes[enemyNumber], spawnPoints[spawnPoint].position, spawnPoints[spawnPoint].rotation, transform);
-        enemies.Add(enemy);
-    }
-
-    void SpawnEnemies()
-    {
-        for (int i = 0; i < spawnPoints.Length; i++)
-        {
-            GameObject enemy = Instantiate(enemyTypes[Random.Range(0, enemyTypes.Length)], spawnPoints[i].position, spawnPoints[i].rotation, transform);
-            enemies.Add(enemy);
-        }
+        GameObject enemy = Instantiate(targetTypes[enemyNumber], spawnPoints[spawnPoint].position, spawnPoints[spawnPoint].rotation, transform);
+        target.Add(enemy);
+        //_UI.UpdateTargetCount(target.Count);
+        
     }
 
     public Transform GetRandomSpawnPoint()
     {
         return spawnPoints[Random.Range(0, spawnPoints.Length)];
+    }
+
+    public void KillTarget(GameObject _target)
+    {
+        if(target.Count == 0)
+            return;
+
+        target.Remove(_target);
+        //_UI.UpdateTargetCount(target.Count);
+        _GM.UpdateBonusTime();
+
     }
 
 

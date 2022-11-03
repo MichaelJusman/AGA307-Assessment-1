@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public class Target : MonoBehaviour
 {
@@ -31,6 +32,7 @@ public class Target : MonoBehaviour
         _GM = FindObjectOfType<GameManager>();
 
         SetupAI();
+        Setup();
         StartCoroutine(Move());
     }
 
@@ -66,6 +68,7 @@ public class Target : MonoBehaviour
     {
         startPos = Instantiate(new GameObject(), transform.position, transform.rotation).transform;
         endPos = _TM.GetRandomSpawnPoint();
+        endPos = TargetManager.instance.GetRandomSpawnPoint();
         moveToPos = endPos;
     }
 
@@ -126,12 +129,11 @@ public class Target : MonoBehaviour
 
     }
 
-
-
-    void Die()
+    public void Die()
     {
         StopAllCoroutines();
-        _GM.OnEnemyDie();
+        _GM.OnTargetDie();
+        _TM.KillTarget(this.gameObject);
     }
 
 }
