@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public enum GameState
 {
@@ -35,6 +36,16 @@ public class GameManager : Singleton<GameManager>
 
     UIManager _UI;
 
+    public void ChangeGameState(GameState _gameState)
+    {
+        gameState = _gameState;
+    }
+
+    public void ChangeDifficulty(int _difficulty)
+    {
+        difficulty = (Difficulty)_difficulty;
+    }
+
     public void Update()
     {
        if(gameState == GameState.Playing)
@@ -65,6 +76,4 @@ public class GameManager : Singleton<GameManager>
     {
         timer = timer + bonusTime;
     }
-
-
 }
