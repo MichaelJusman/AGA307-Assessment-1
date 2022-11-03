@@ -28,7 +28,7 @@ public class TargetManager : Singleton<TargetManager>
     public string[] enemyNames;
 
     public int spawnCount = 10;
-    //public string killCondition = "Two";
+    public string killCondition = "Two";
     public float SpawnDelay = 2f;
 
     public GameObject enemyTrigger;
@@ -42,7 +42,7 @@ public class TargetManager : Singleton<TargetManager>
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.I))
+        if (Input.GetKeyDown(KeyCode.I))
         {
             SpawnEnemy();
         }
@@ -63,7 +63,7 @@ public class TargetManager : Singleton<TargetManager>
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("Player"))
+        if (other.CompareTag("Player"))
         {
             SpawnEnemy();
         }
@@ -79,7 +79,7 @@ public class TargetManager : Singleton<TargetManager>
 
     void SpawnEnemies()
     {
-        for(int i = 0; i < spawnPoints.Length; i++)
+        for (int i = 0; i < spawnPoints.Length; i++)
         {
             GameObject enemy = Instantiate(enemyTypes[Random.Range(0, enemyTypes.Length)], spawnPoints[i].position, spawnPoints[i].rotation, transform);
             enemies.Add(enemy);
@@ -91,5 +91,5 @@ public class TargetManager : Singleton<TargetManager>
         return spawnPoints[Random.Range(0, spawnPoints.Length)];
     }
 
-    
+
 }
