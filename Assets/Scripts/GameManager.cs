@@ -32,16 +32,16 @@ public class GameManager : Singleton<GameManager>
     public float bonusTime = 5;
     
 
-    Target _TG;
+
 
     UIManager _UI;
 
-    UITitle _UT;
+    
 
     private void Start()
     {
         _UI = FindObjectOfType<UIManager>();
-        _UT = FindObjectOfType<UITitle>();
+     
     }
 
     public void ChangeGameState(GameState _gameState)
@@ -104,6 +104,21 @@ public class GameManager : Singleton<GameManager>
                 break;
         }
            
+    }
+    public void StartGame()
+    {
+        SceneManager.LoadScene("MainGame");
+        ChangeGameState(GameState.Playing);
+    }
+
+    public void LoadTitle()
+    {
+        SceneManager.LoadScene("Title");
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
     }
 
 }
