@@ -38,6 +38,7 @@ public class TargetManager : Singleton<TargetManager>
     private void Start()
     {
         _GM = FindObjectOfType<GameManager>();
+        _UI = FindObjectOfType<UIManager>();
     }
 
     private void Update()
@@ -62,7 +63,7 @@ public class TargetManager : Singleton<TargetManager>
         int spawnPoint = Random.Range(0, spawnPoints.Length);
         GameObject enemy = Instantiate(targetTypes[enemyNumber], spawnPoints[spawnPoint].position, spawnPoints[spawnPoint].rotation, transform);
         target.Add(enemy);
-        //_UI.UpdateTargetCount(target.Count);
+        _UI.UpdateTargetCount(target.Count);
         
     }
 
@@ -76,8 +77,9 @@ public class TargetManager : Singleton<TargetManager>
         if(target.Count == 0)
             return;
 
+
         target.Remove(_target);
-        //_UI.UpdateTargetCount(target.Count);
+        _UI.UpdateTargetCount(target.Count);
         _GM.UpdateBonusTime();
 
     }

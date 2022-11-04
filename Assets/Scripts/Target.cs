@@ -7,6 +7,7 @@ public class Target : MonoBehaviour
 {
 
     public TargetSize mySize;
+    public Difficulty difficulty;
 
     float scaleFactor = 1;
 
@@ -38,6 +39,23 @@ public class Target : MonoBehaviour
 
     void Setup()
     {
+        switch (difficulty)
+        {
+            case Difficulty.Easy:
+                mySize = TargetSize.Small;
+                break;
+
+            case Difficulty.Medium:
+                mySize = TargetSize.Medium;
+                break;
+
+            case Difficulty.Hard:
+                mySize = TargetSize.Large;
+                break;
+        }
+
+
+
         switch (mySize)
         {
             case TargetSize.Large:
@@ -47,6 +65,7 @@ public class Target : MonoBehaviour
                 transform.localScale = Vector3.one * scaleFactor;
                 transform.GetComponent<Renderer>().material.color = Color.green;
                 break;
+
             case TargetSize.Medium:
                 mySpeed = 2f;
                 myHealth = 300f;
@@ -54,6 +73,7 @@ public class Target : MonoBehaviour
                 transform.localScale = Vector3.one * scaleFactor;
                 transform.GetComponent<Renderer>().material.color = Color.yellow;
                 break;
+
             case TargetSize.Small:
                 mySpeed = 3f;
                 myHealth = 100f;

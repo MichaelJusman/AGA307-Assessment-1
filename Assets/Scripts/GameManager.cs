@@ -36,6 +36,14 @@ public class GameManager : Singleton<GameManager>
 
     UIManager _UI;
 
+    UITitle _UT;
+
+    private void Start()
+    {
+        _UI = FindObjectOfType<UIManager>();
+        _UT = FindObjectOfType<UITitle>();
+    }
+
     public void ChangeGameState(GameState _gameState)
     {
         gameState = _gameState;
@@ -44,6 +52,7 @@ public class GameManager : Singleton<GameManager>
     public void ChangeDifficulty(int _difficulty)
     {
         difficulty = (Difficulty)_difficulty;
+        Setup();
     }
 
     public void Update()
@@ -52,14 +61,14 @@ public class GameManager : Singleton<GameManager>
         {
             timer -= Time.deltaTime;
             timer = Mathf.Clamp(timer, 0, maxTime);
-            //_UI.UpdateTimer(timer);
+            _UI.UpdateTimer(timer);
         }
     }
 
     public void AddScore(int _score)
     {
         Score += _score * scoreMultiplier;
-        //_UI.UpdateScore(Score);
+        _UI.UpdateScore(Score);
     }
 
     public void OnTargetHit()
@@ -75,5 +84,26 @@ public class GameManager : Singleton<GameManager>
     public void UpdateBonusTime()
     {
         timer = timer + bonusTime;
+        _UI.UpdateTimer(timer);
     }
+
+    public void Setup()
+    {
+        switch (difficulty)
+        {
+            case Difficulty.Easy:
+                scoreMultiplier = 1;
+                break;
+
+            case Difficulty.Medium:
+                scoreMultiplier = 2;
+                break;
+
+            case Difficulty.Hard:
+                scoreMultiplier = 3;
+                break;
+        }
+           
+    }
+
 }
