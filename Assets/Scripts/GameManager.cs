@@ -53,6 +53,7 @@ public class GameManager : Singleton<GameManager>
     {
         difficulty = (Difficulty)_difficulty;
         Setup();
+        _UI.UpdateDifficulty(difficulty);
     }
 
     public void Update()
@@ -63,6 +64,25 @@ public class GameManager : Singleton<GameManager>
             timer = Mathf.Clamp(timer, 0, maxTime);
             _UI.UpdateTimer(timer);
         }
+
+       if(Input.GetKeyDown(KeyCode.J))
+        {
+            difficulty = Difficulty.Easy;
+            _UI.UpdateDifficulty(difficulty);
+        }
+
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            difficulty = Difficulty.Medium;
+            _UI.UpdateDifficulty(difficulty);
+        }
+
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            difficulty = Difficulty.Hard;
+            _UI.UpdateDifficulty(difficulty);
+        }
+
     }
 
     public void AddScore(int _score)

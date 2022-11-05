@@ -61,7 +61,7 @@ public class Target : MonoBehaviour
             case TargetSize.Large:
                 mySpeed = 1f;
                 myHealth = 500f;
-                scaleFactor = 3;
+                scaleFactor = 2;
                 transform.localScale = Vector3.one * scaleFactor;
                 transform.GetComponent<Renderer>().material.color = Color.green;
                 break;
@@ -69,7 +69,7 @@ public class Target : MonoBehaviour
             case TargetSize.Medium:
                 mySpeed = 2f;
                 myHealth = 300f;
-                scaleFactor = 2;
+                scaleFactor = 1;
                 transform.localScale = Vector3.one * scaleFactor;
                 transform.GetComponent<Renderer>().material.color = Color.yellow;
                 break;
@@ -77,6 +77,7 @@ public class Target : MonoBehaviour
             case TargetSize.Small:
                 mySpeed = 3f;
                 myHealth = 100f;
+                scaleFactor = 0.5f;
                 transform.localScale = Vector3.one * scaleFactor;
                 transform.GetComponent<Renderer>().material.color = Color.red;
                 break;

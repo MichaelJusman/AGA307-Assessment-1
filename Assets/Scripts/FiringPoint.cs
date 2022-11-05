@@ -34,34 +34,6 @@ public class FiringPoint : MonoBehaviour
     public float peltSpeed = 5000;
 
 
-    //void Setup()
-    //{
-    //    switch (weaponType)
-    //    {
-    //        case WeaponType.Bullet:
-    //            if (Input.GetButton("Fire1"))
-    //            {
-    //                FireCannon();
-    //            }
-    //        break;
-            
-    //        case WeaponType.Cannon:
-    //            if (Input.GetButtonDown("Fire1"))
-    //            {
-    //                FireCannon();
-    //            }
-    //        break;
-            
-    //        case WeaponType.Pelt:
-    //            if (Input.GetButtonDown("Fire1"))
-    //            {
-    //                FireCannon();
-    //            }
-    //        break;
-    //    }
-    //}
-
-
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
@@ -117,7 +89,7 @@ public class FiringPoint : MonoBehaviour
 
         projectileInstance.GetComponent<Rigidbody>().AddForce(firingPoint.forward * bulletSpeed);
 
-        Destroy(projectileInstance, 5);
+        Destroy(projectileInstance, 2);
     }
 
     void FireCannon()
