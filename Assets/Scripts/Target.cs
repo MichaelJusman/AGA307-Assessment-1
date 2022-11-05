@@ -161,7 +161,7 @@ public class Target : MonoBehaviour
 
     public void Update()
     {
-        if(difficulty == Difficulty.Easy)
+        if (difficulty == Difficulty.Easy)
         {
             ChangeSizeSmall();
         }

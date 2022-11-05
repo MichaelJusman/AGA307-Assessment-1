@@ -25,6 +25,7 @@ public class TargetManager : Singleton<TargetManager>
     public Transform[] spawnPoints;         //The spawn point for our target to spawn at
     public GameObject[] targetTypes;         //Contains all the different enemy types in our game
     public List<GameObject> target;        //A list containing all the target in our scene
+    public Transform[] targetSize;
 
     public int spawnCount = 10;
     public string killCondition = "Two";
@@ -34,6 +35,8 @@ public class TargetManager : Singleton<TargetManager>
 
     GameManager _GM;
     UIManager _UI;
+
+
 
     private void Start()
     {
@@ -47,6 +50,12 @@ public class TargetManager : Singleton<TargetManager>
         {
             SpawnTarget();
         }
+
+        //if (Input.GetKeyDown(KeyCode.R))
+        //{
+        //    GetRandomType();
+        //}
+
     }
 
     private void OnTriggerEnter(Collider other)
@@ -67,6 +76,11 @@ public class TargetManager : Singleton<TargetManager>
         
     }
 
+    //public Transform GetRandomType()
+    //{
+    //    return targetSize[Random.Range(0, targetSize.Length)];
+    //}
+
     public Transform GetRandomSpawnPoint()
     {
         return spawnPoints[Random.Range(0, spawnPoints.Length)];
@@ -83,6 +97,8 @@ public class TargetManager : Singleton<TargetManager>
         _GM.UpdateBonusTime();
 
     }
+
+
 
 
 }
