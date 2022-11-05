@@ -35,12 +35,14 @@ public class GameManager : Singleton<GameManager>
 
 
     UIManager _UI;
+    Target _TG;
 
     
 
     private void Start()
     {
         _UI = FindObjectOfType<UIManager>();
+        _TG = FindObjectOfType<Target>();
      
     }
 

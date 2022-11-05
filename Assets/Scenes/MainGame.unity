@@ -15388,7 +15388,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dontDestroy: 0
   gameState: 1
-  difficulty: 0
+  difficulty: 1
   Score: 0
   maxTime: 30
   timer: 30

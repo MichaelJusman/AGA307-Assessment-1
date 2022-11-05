@@ -33,57 +33,59 @@ public class Target : MonoBehaviour
         _GM = FindObjectOfType<GameManager>();
 
         SetupAI();
-        Setup();
+        //Setup();
         StartCoroutine(Move());
     }
 
-    void Setup()
-    {
-        switch (difficulty)
-        {
-            case Difficulty.Easy:
-                mySize = TargetSize.Small;
-                break;
-
-            case Difficulty.Medium:
-                mySize = TargetSize.Medium;
-                break;
-
-            case Difficulty.Hard:
-                mySize = TargetSize.Large;
-                break;
-        }
 
 
+    //void Setup()
+    //{
+    //    switch (difficulty)
+    //    {
+    //        case Difficulty.Easy:
+    //            mySize = TargetSize.Small;
+    //            break;
 
-        switch (mySize)
-        {
-            case TargetSize.Large:
-                mySpeed = 1f;
-                myHealth = 500f;
-                scaleFactor = 2;
-                transform.localScale = Vector3.one * scaleFactor;
-                transform.GetComponent<Renderer>().material.color = Color.green;
-                break;
+    //        case Difficulty.Medium:
+    //            mySize = TargetSize.Medium;
+    //            break;
 
-            case TargetSize.Medium:
-                mySpeed = 2f;
-                myHealth = 300f;
-                scaleFactor = 1;
-                transform.localScale = Vector3.one * scaleFactor;
-                transform.GetComponent<Renderer>().material.color = Color.yellow;
-                break;
+    //        case Difficulty.Hard:
+    //            mySize = TargetSize.Large;
+    //            break;
+    //    }
 
-            case TargetSize.Small:
-                mySpeed = 3f;
-                myHealth = 100f;
-                scaleFactor = 0.5f;
-                transform.localScale = Vector3.one * scaleFactor;
-                transform.GetComponent<Renderer>().material.color = Color.red;
-                break;
 
-        }
-    }
+
+    //    switch (mySize)
+    //    {
+    //        case TargetSize.Large:
+    //            mySpeed = 1f;
+    //            myHealth = 500f;
+    //            scaleFactor = 2;
+    //            transform.localScale = Vector3.one * scaleFactor;
+    //            transform.GetComponent<Renderer>().material.color = Color.green;
+    //            break;
+
+    //        case TargetSize.Medium:
+    //            mySpeed = 2f;
+    //            myHealth = 300f;
+    //            scaleFactor = 1;
+    //            transform.localScale = Vector3.one * scaleFactor;
+    //            transform.GetComponent<Renderer>().material.color = Color.yellow;
+    //            break;
+
+    //        case TargetSize.Small:
+    //            mySpeed = 3f;
+    //            myHealth = 100f;
+    //            scaleFactor = 0.5f;
+    //            transform.localScale = Vector3.one * scaleFactor;
+    //            transform.GetComponent<Renderer>().material.color = Color.red;
+    //            break;
+
+    //    }
+    //}
 
     void SetupAI()
     {
@@ -155,6 +157,67 @@ public class Target : MonoBehaviour
         StopAllCoroutines();
         _GM.OnTargetDie();
         _TM.KillTarget(this.gameObject);
+    }
+
+    public void Update()
+    {
+        if(difficulty == Difficulty.Easy)
+        {
+            ChangeSizeSmall();
+        }
+
+        if (difficulty == Difficulty.Medium)
+        {
+            ChangeSizeMedium();
+        }
+
+        if (difficulty == Difficulty.Hard)
+        {
+            ChangeSizeLarge();
+        }
+
+        if (Input.GetKeyDown(KeyCode.J))
+        {
+            difficulty = Difficulty.Easy;
+        }
+
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            difficulty = Difficulty.Medium;
+        }
+
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            difficulty = Difficulty.Hard;
+        }
+    }
+
+
+    public void ChangeSizeSmall()
+    {
+        mySpeed = 3f;
+        myHealth = 100f;
+        scaleFactor = 0.5f;
+        transform.localScale = Vector3.one * scaleFactor;
+        transform.GetComponent<Renderer>().material.color = Color.red;
+    }
+
+    public void ChangeSizeMedium()
+    {
+        mySpeed = 2f;
+        myHealth = 300f;
+        scaleFactor = 1;
+        transform.localScale = Vector3.one * scaleFactor;
+        transform.GetComponent<Renderer>().material.color = Color.yellow;
+    }
+
+    public void ChangeSizeLarge()
+    {
+        mySpeed = 1f;
+        myHealth = 500f;
+        scaleFactor = 2;
+        transform.localScale = Vector3.one * scaleFactor;
+        transform.GetComponent<Renderer>().material.color = Color.green;
     }
 
 }

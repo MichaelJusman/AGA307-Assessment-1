@@ -111,5 +111,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c328af34544b564d89f2c86956b26d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mySize: 1
+  mySize: 0
+  difficulty: 0
+  myHealth: 100
+  mySpeed: 2
   myPatrol: 1
