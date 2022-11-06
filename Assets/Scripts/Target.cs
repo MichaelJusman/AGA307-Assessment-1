@@ -33,59 +33,59 @@ public class Target : MonoBehaviour
         _GM = FindObjectOfType<GameManager>();
 
         SetupAI();
-        //Setup();
+        Setup();
         StartCoroutine(Move());
     }
 
 
 
-    //void Setup()
-    //{
-    //    switch (difficulty)
-    //    {
-    //        case Difficulty.Easy:
-    //            mySize = TargetSize.Small;
-    //            break;
+    void Setup()
+    {
+        //switch (difficulty)
+        //{
+        //    case Difficulty.Easy:
+        //        mySize = TargetSize.Small;
+        //        break;
 
-    //        case Difficulty.Medium:
-    //            mySize = TargetSize.Medium;
-    //            break;
+        //    case Difficulty.Medium:
+        //        mySize = TargetSize.Medium;
+        //        break;
 
-    //        case Difficulty.Hard:
-    //            mySize = TargetSize.Large;
-    //            break;
-    //    }
+        //    case Difficulty.Hard:
+        //        mySize = TargetSize.Large;
+        //        break;
+        //}
 
 
 
-    //    switch (mySize)
-    //    {
-    //        case TargetSize.Large:
-    //            mySpeed = 1f;
-    //            myHealth = 500f;
-    //            scaleFactor = 2;
-    //            transform.localScale = Vector3.one * scaleFactor;
-    //            transform.GetComponent<Renderer>().material.color = Color.green;
-    //            break;
+        //switch (mySize)
+        //{
+        //    case TargetSize.Large:
+        //        mySpeed = 1f;
+        //        myHealth = 500f;
+        //        scaleFactor = 2;
+        //        transform.localScale = Vector3.one * scaleFactor;
+        //        transform.GetComponent<Renderer>().material.color = Color.green;
+        //        break;
 
-    //        case TargetSize.Medium:
-    //            mySpeed = 2f;
-    //            myHealth = 300f;
-    //            scaleFactor = 1;
-    //            transform.localScale = Vector3.one * scaleFactor;
-    //            transform.GetComponent<Renderer>().material.color = Color.yellow;
-    //            break;
+        //    case TargetSize.Medium:
+        //        mySpeed = 2f;
+        //        myHealth = 300f;
+        //        scaleFactor = 1;
+        //        transform.localScale = Vector3.one * scaleFactor;
+        //        transform.GetComponent<Renderer>().material.color = Color.yellow;
+        //        break;
 
-    //        case TargetSize.Small:
-    //            mySpeed = 3f;
-    //            myHealth = 100f;
-    //            scaleFactor = 0.5f;
-    //            transform.localScale = Vector3.one * scaleFactor;
-    //            transform.GetComponent<Renderer>().material.color = Color.red;
-    //            break;
+        //    case TargetSize.Small:
+        //        mySpeed = 3f;
+        //        myHealth = 100f;
+        //        scaleFactor = 0.5f;
+        //        transform.localScale = Vector3.one * scaleFactor;
+        //        transform.GetComponent<Renderer>().material.color = Color.red;
+        //        break;
 
-    //    }
-    //}
+        //}
+    }
 
     void SetupAI()
     {
@@ -131,23 +131,27 @@ public class Target : MonoBehaviour
     {
         if (collision.collider.CompareTag("Bullet"))
         {
-            myHealth -= _FP.bulletDamage;
+            TakeDamage(_FP.bulletDamage);
+            Debug.Log(name + "has" + myHealth + "left");
         }
 
         if (collision.collider.CompareTag("Cannon"))
         {
-            myHealth -= _FP.cannonDamage;
+            TakeDamage(_FP.cannonDamage);
+            Debug.Log(name + "has" + myHealth + "left");
         }
 
         if (collision.collider.CompareTag("Pelt"))
         {
-            myHealth -= _FP.bulletDamage;
+            TakeDamage(_FP.peltDamage);
+            Debug.Log(name + "has" + myHealth + "left");
         }
 
         if (myHealth <= 0)
         {
             Die();
             Destroy(this.gameObject);
+            Debug.Log("IM DED");
         }
 
     }
@@ -219,5 +223,15 @@ public class Target : MonoBehaviour
         transform.localScale = Vector3.one * scaleFactor;
         transform.GetComponent<Renderer>().material.color = Color.green;
     }
+
+    public void TakeDamage(float _damage)
+    {
+        myHealth = myHealth - _damage;
+    }
+
+
+    //This fucntion worked perfectly before I added the UI and difficulty
+    //Before I could manually change the size and it would work, the weapon damage worked as intended, reducing their HP accodringly and destroying when hp = 0
+    //After I added UI and title it broke, and I tried to fix it for a whole day and a half and cant fix it.
 
 }

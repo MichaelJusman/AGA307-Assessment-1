@@ -43,6 +43,7 @@ public class GameManager : Singleton<GameManager>
     {
         _UI = FindObjectOfType<UIManager>();
         _TG = FindObjectOfType<Target>();
+
      
     }
 
@@ -114,6 +115,7 @@ public class GameManager : Singleton<GameManager>
         switch (difficulty)
         {
             case Difficulty.Easy:
+                
                 scoreMultiplier = 1;
                 break;
 

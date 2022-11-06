@@ -15390,8 +15390,8 @@ MonoBehaviour:
   gameState: 1
   difficulty: 1
   Score: 0
-  maxTime: 30
-  timer: 30
+  maxTime: 100
+  timer: 100
   scoreMultiplier: 1
   bonusTime: 5
 --- !u!4 &1225594263
