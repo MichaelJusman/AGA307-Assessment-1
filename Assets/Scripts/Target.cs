@@ -41,20 +41,35 @@ public class Target : MonoBehaviour
 
     void Setup()
     {
-        //switch (difficulty)
-        //{
-        //    case Difficulty.Easy:
-        //        mySize = TargetSize.Small;
-        //        break;
+        switch (difficulty)
+        {
+            case Difficulty.Easy:
+                mySize = TargetSize.Small;
+                mySpeed = 3f;
+                myHealth = 100f;
+                scaleFactor = 0.5f;
+                transform.localScale = Vector3.one * scaleFactor;
+                transform.GetComponent<Renderer>().material.color = Color.red;
+                break;
 
-        //    case Difficulty.Medium:
-        //        mySize = TargetSize.Medium;
-        //        break;
+            case Difficulty.Medium:
+                mySize = TargetSize.Medium;
+                mySpeed = 2f;
+                myHealth = 300f;
+                scaleFactor = 1;
+                transform.localScale = Vector3.one * scaleFactor;
+                transform.GetComponent<Renderer>().material.color = Color.yellow;
+                break;
 
-        //    case Difficulty.Hard:
-        //        mySize = TargetSize.Large;
-        //        break;
-        //}
+            case Difficulty.Hard:
+                mySize = TargetSize.Large;
+                mySpeed = 1f;
+                myHealth = 500f;
+                scaleFactor = 2;
+                transform.localScale = Vector3.one * scaleFactor;
+                transform.GetComponent<Renderer>().material.color = Color.green;
+                break;
+        }
 
 
 
@@ -165,20 +180,20 @@ public class Target : MonoBehaviour
 
     public void Update()
     {
-        if (difficulty == Difficulty.Easy)
-        {
-            ChangeSizeSmall();
-        }
+        //if (difficulty == Difficulty.Easy)
+        //{
+        //    ChangeSizeSmall();
+        //}
 
-        if (difficulty == Difficulty.Medium)
-        {
-            ChangeSizeMedium();
-        }
+        //if (difficulty == Difficulty.Medium)
+        //{
+        //    ChangeSizeMedium();
+        //}
 
-        if (difficulty == Difficulty.Hard)
-        {
-            ChangeSizeLarge();
-        }
+        //if (difficulty == Difficulty.Hard)
+        //{
+        //    ChangeSizeLarge();
+        //}
 
         if (Input.GetKeyDown(KeyCode.J))
         {
@@ -197,32 +212,32 @@ public class Target : MonoBehaviour
     }
 
 
-    public void ChangeSizeSmall()
-    {
-        mySpeed = 3f;
-        myHealth = 100f;
-        scaleFactor = 0.5f;
-        transform.localScale = Vector3.one * scaleFactor;
-        transform.GetComponent<Renderer>().material.color = Color.red;
-    }
+    //public void ChangeSizeSmall()
+    //{
+    //    mySpeed = 3f;
+    //    myHealth = 100f;
+    //    scaleFactor = 0.5f;
+    //    transform.localScale = Vector3.one * scaleFactor;
+    //    transform.GetComponent<Renderer>().material.color = Color.red;
+    //}
 
-    public void ChangeSizeMedium()
-    {
-        mySpeed = 2f;
-        myHealth = 300f;
-        scaleFactor = 1;
-        transform.localScale = Vector3.one * scaleFactor;
-        transform.GetComponent<Renderer>().material.color = Color.yellow;
-    }
+    //public void ChangeSizeMedium()
+    //{
+    //    mySpeed = 2f;
+    //    myHealth = 300f;
+    //    scaleFactor = 1;
+    //    transform.localScale = Vector3.one * scaleFactor;
+    //    transform.GetComponent<Renderer>().material.color = Color.yellow;
+    //}
 
-    public void ChangeSizeLarge()
-    {
-        mySpeed = 1f;
-        myHealth = 500f;
-        scaleFactor = 2;
-        transform.localScale = Vector3.one * scaleFactor;
-        transform.GetComponent<Renderer>().material.color = Color.green;
-    }
+    //public void ChangeSizeLarge()
+    //{
+    //    mySpeed = 1f;
+    //    myHealth = 500f;
+    //    scaleFactor = 2;
+    //    transform.localScale = Vector3.one * scaleFactor;
+    //    transform.GetComponent<Renderer>().material.color = Color.green;
+    //}
 
     public void TakeDamage(float _damage)
     {
